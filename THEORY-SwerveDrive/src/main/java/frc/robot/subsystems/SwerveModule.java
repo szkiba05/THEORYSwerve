@@ -45,6 +45,7 @@ public class SwerveModule
         this.absoluteEncoderReversed = absoluteEncoderReversed;
 
         turningPIDController = new PIDController(0, 0, 0);
+
         this.turningPIDController.enableContinuousInput(-Math.PI, Math.PI);
 
     }

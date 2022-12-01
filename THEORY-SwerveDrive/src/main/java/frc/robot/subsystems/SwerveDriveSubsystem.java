@@ -24,7 +24,12 @@ public class SwerveDriveSubsystem extends SubsystemBase {
     private SwerveDriveOdometry odometry;
 
     /** Creates a new ExampleSubsystem. */
-    public SwerveDriveSubsystem() {}
+    public SwerveDriveSubsystem() {
+        rightFront = new SwerveModule(7, 1, 0, false, false, false);
+        rightBack = new SwerveModule(4, 3, 0, false, false, false);
+        leftFront = new SwerveModule(5, 2, 0, false, false, false);
+        leftBack = new SwerveModule(6, 8, 0, false, false, false);
+    }
 
     @Override
     public void periodic() {
