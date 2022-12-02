@@ -21,6 +21,8 @@ public class SwerveModule
 
     // Turning motor PID - Helps to correct for error in the turning motor and setting it to a desired postion accurately
     private PIDController turningPIDController;
+    private PIDController velocityPIDController;
+
 
     private AnalogInput absoluteEncoder;
 
@@ -45,6 +47,7 @@ public class SwerveModule
         this.absoluteEncoderReversed = absoluteEncoderReversed;
 
         turningPIDController = new PIDController(0, 0, 0);
+        velocityPIDController = new PIDController(0, 0, 0);
 
         this.turningPIDController.enableContinuousInput(-Math.PI, Math.PI);
 

@@ -72,6 +72,12 @@ public class SwerveDriveSubsystem extends SubsystemBase {
         leftBack.setModuleState(desiredStates[3]);
     }
 
+    public SwerveModuleState[] getModuleState(){
+        SwerveModuleState[] moduleStates = {rightFront.getModuleState(),rightBack.getModuleState(),leftFront.getModuleState(),leftBack.getModuleState()};
+
+        return moduleStates;
+    }
+
     // Reset Odometry
 
     public void resetOdometry(Pose2d pose)

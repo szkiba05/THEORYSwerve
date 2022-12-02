@@ -24,7 +24,7 @@ public class JoystickCommand extends CommandBase {
 
   private final boolean fieldOrientedControl;
 
-  private final SlewRateLimiter xSlewy, ySlewy, rotationSlewy;
+  private final SlewRateLimiter xSlewRateLimiter, ySlewRateLimiter, rotationSlewRateLimiter;
 
 
   /**
@@ -43,9 +43,9 @@ public class JoystickCommand extends CommandBase {
 
     this.fieldOrientedControl = fieldOrientedControl;
 
-    this.xSlewy = new SlewRateLimiter(DriveConstants.teleDriveMaxAngularAccelerationPerSecond);
-    this.ySlewy = new SlewRateLimiter(DriveConstants.teleDriveMaxAngularAccelerationPerSecond);
-    this.rotationSlewy = new SlewRateLimiter(DriveConstants.teleDriveMaxAngularAccelerationPerSecond);
+    this.xSlewRateLimiter = new SlewRateLimiter(DriveConstants.teleDriveMaxAngularAccelerationPerSecond);
+    this.ySlewRateLimiter = new SlewRateLimiter(DriveConstants.teleDriveMaxAngularAccelerationPerSecond);
+    this.rotationSlewRateLimiter = new SlewRateLimiter(DriveConstants.teleDriveMaxAngularAccelerationPerSecond);
   }
 
   // Called when the command is initially scheduled.
@@ -77,9 +77,9 @@ public class JoystickCommand extends CommandBase {
         rotationSpeed = 0.0;
     }
 
-    xSpeed = xSlewy.calculate(xSpeed) * DriveConstants.teleDriveMaxSpeedMetersPerSecond;
-    ySpeed = ySlewy.calculate(ySpeed) * DriveConstants.teleDriveMaxSpeedMetersPerSecond;
-    rotationSpeed = rotationSlewy.calculate(rotationSpeed) * DriveConstants.teleDriveMaxAngularSpeedRadiansPerSecond;
+    xSpeed = xSlewRateLimiter.calculate(xSpeed) * DriveConstants.teleDriveMaxSpeedMetersPerSecond;
+    ySpeed = ySlewRateLimiter.calculate(ySpeed) * DriveConstants.teleDriveMaxSpeedMetersPerSecond;
+    rotationSpeed = rotationSlewRateLimiter.calculate(rotationSpeed) * DriveConstants.teleDriveMaxAngularSpeedRadiansPerSecond;
 
     ChassisSpeeds chassisSpeeds;
     if(fieldOrientedControl)
